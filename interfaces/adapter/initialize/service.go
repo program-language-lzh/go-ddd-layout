@@ -4,7 +4,9 @@ import (
 	"os"
 	"strconv"
 
+	fileAppSrv "server/application/service/file"
 	userAppSrv "server/application/service/user"
+	fileDomainSrv "server/domain/file/service"
 	userDomainSrv "server/domain/user/service"
 	"server/infrastructure/database"
 	"server/infrastructure/persistence"
@@ -30,9 +32,10 @@ func serviceRegister() {
 	// By injecting UserRepository into NewUserDomainImpl and then injecting UserDomain into NewServiceImpl,
 	// the dependency relationship is passed and decoupled.
 	appSrvUser := userAppSrv.NewServiceImpl(userDomainSrv.NewUserDomainImpl(repos.User))
-
+	appSrvFile := fileAppSrv.NewFileServiceImpl(fileDomainSrv.NewFileDomainImpl(repos.File))
 	// Inject services into controllers
 	controller.InitSrvInject(
 		appSrvUser,
+		appSrvFile,
 	)
 }

@@ -49,4 +49,11 @@ func ApiRouter(r *gin.Engine) {
 		userGroup.GET("/info", controller.APIs.User.Userinfo)                  // [GET]  /api/v1/user/info - Get user info
 		userGroup.POST("/:uid/password", controller.APIs.User.UpdatePassword)  // [POST]  /api/v1/user/:id/password - Update user password
 	}
+
+	fileGroup := r.Group(baseURI + "/file")
+	{
+		fileGroup.POST("", controller.APIs.File.CreateFile)
+		fileGroup.GET("/:uid", controller.APIs.File.GetFileById)
+		fileGroup.POST("/upload", controller.APIs.File.UploadFile) // [POST] /api/v1/file/upload - Upload a zip file
+	}
 }

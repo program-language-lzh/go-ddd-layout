@@ -32,6 +32,25 @@ CREATE TABLE `t_rbac_role` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
+-- Table structure for t_file_info
+-- ----------------------------
+DROP TABLE IF EXISTS `t_file_info`;
+CREATE TABLE `t_file_info` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'Primary key ID',
+  `filename` varchar(36) NOT NULL COMMENT 'File Name',
+  `filetype` text COMMENT 'File Type',
+  `created_at` datetime(3) DEFAULT CURRENT_TIMESTAMP(3) COMMENT 'Creation time',
+  `updated_at` datetime(3) DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3) COMMENT 'Update time',
+  `deleted_at` datetime(3) DEFAULT NULL COMMENT 'Deletion time',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+BEGIN;
+INSERT INTO `t_file_info` (`id`, `filename`, `filetype`, `created_at`, `updated_at`, `deleted_at`) VALUES (1, 'test1', 'txt', '2023-11-03 16:16:00.786', '2023-11-03 16:16:00.786', NULL);
+INSERT INTO `t_file_info` (`id`, `filename`, `filetype`, `created_at`, `updated_at`, `deleted_at`) VALUES (2, 'test2', 'pdf', '2023-11-03 16:16:00.786', '2023-11-03 16:16:00.786', NULL);
+INSERT INTO `t_file_info` (`id`, `filename`, `filetype`, `created_at`, `updated_at`, `deleted_at`) VALUES (3, 'test3', 'img', '2023-11-03 16:16:00.786', '2023-11-03 16:16:00.786', NULL);
+COMMIT;
+-- ----------------------------
 -- Records of t_rbac_role
 -- ----------------------------
 BEGIN;

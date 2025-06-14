@@ -6,7 +6,8 @@ import (
 	"os"
 	"time"
 
-	"server/infrastructure/persistence/user/po"
+	filepo "server/infrastructure/persistence/file/po"
+	userpo "server/infrastructure/persistence/user/po"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -112,8 +113,9 @@ func (c *DBConfig) pool() *DBConfig {
 // migrateTables performs table migration for the necessary models.
 func (c *DBConfig) migrateTables() *DBConfig {
 	err := c.DB.AutoMigrate(
-		&po.User{},
-		&po.Role{},
+		&userpo.User{},
+		&userpo.Role{},
+		&filepo.File{},
 	)
 
 	if err != nil {
